@@ -14,22 +14,22 @@ def generate_questions(topic, num_questions):
  results = llm.answer(system_prompt, user_prompt)
  return results
 
- with st.sidebar:
+with st.sidebar:
   topic = st.text_input("Enter the topic to generate questions:")
- num_questions = st.selectbox("Select number of questions to generate:", [1, 2, 3])
- button = st.button("Generate Questions")
- if button: # if the button is clicked
-  results = generate_questions(topic, num_questions)
- print("LLM response:")
- print(results)
- st.write("LLM response:")
- st.json(results)
+  num_questions = st.selectbox("Select number of questions to generate:", [1, 2, 3])
+  button = st.button("Generate Questions")
+  if button: # if the button is clicked
+   results = generate_questions(topic, num_questions)
+  print("LLM response:")
+  print(results)
+  st.write("LLM response:")
+  st.json(results)
  # show questions
- st.markdown ("## Generated Questions")
- results_dict = json.loads(results) # convert results to python dictionary
- for question in results_dict["questions"]:
-  question_text = question["question_text"]
- answer = question["answer"]
- st.write("*Question:*", question_text)
- with st.expander("Show Answer"): 
-  st.info(answer) 
+  st.markdown ("## Generated Questions")
+  results_dict = json.loads(results) # convert results to python dictionary
+  for question in results_dict["questions"]:
+   question_text = question["question_text"]
+  answer = question["answer"]
+  st.write("*Question:*", question_text)
+  with st.expander("Show Answer"): 
+   st.info(answer) 
